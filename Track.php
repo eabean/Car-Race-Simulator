@@ -10,13 +10,12 @@ class Track
 
 	public function __construct()
 	{
-		$position = 0;
-		for ($i = 0; $i < $this->totalElements; $i++, $position += $this->elementLength) {
-			$element = new Element($position);
+		for ($i = 0; $i < $this->totalElements; $i += $this->elementLength) {
+			$element = new Element($i);
 			$this->elements[$i] = $element;
 		}
-		// foreach ($this->elements as $element) {
-		// 	print_r($element);
-		// }
+		foreach ($this->elements as $element) {
+			echo "Element: " . print_r($element) . "\n";
+		}
 	}
 }

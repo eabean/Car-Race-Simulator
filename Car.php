@@ -5,16 +5,21 @@ class Car
 	/**
 	 * @var int type of the element. 'straight' or 'curve'
 	 */
-	public $straightSpeed = '';
+	public $straightSpeed = 0;
 	/**
 	 * @var int type of the element. 'straight' or 'curve'
 	 */
-	public $curveSpeed = '';
+	public $curveSpeed = 0;
+	public $totalSpeed = 22;
+	public $minSpeed = 4;
 
 
-	public function __construct(int $startPos)
+
+	public function __construct()
 	{
-		$this->type = rand(0, 1) ? 'straight' : 'curve';
-		$this->positions = range($startPos, $startPos + $this->length - 1);
+		$this->straightSpeed = rand($this->minSpeed, $this->totalSpeed - $this->minSpeed);
+		$this->curveSpeed = $this->totalSpeed - $this->straightSpeed;
+		echo $this->straightSpeed . "\n";
+		echo $this->curveSpeed . "\n";
 	}
 }
