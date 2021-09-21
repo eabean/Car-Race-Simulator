@@ -1,9 +1,11 @@
 <?php
-
+include('RaceResult.php');
 class Race
 {
-    public function runRace(): RaceResult
-    {
-        return null;
-    }
+
+	public function runRace(): RaceResult
+	{
+		$raceResult = new RaceResult();
+		return $raceResult;
+	}
 }

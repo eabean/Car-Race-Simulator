@@ -1,21 +1,33 @@
 <?php
 class Track
 {
-	/**
-	 * @var array of Elements
-	 */
-	public $elements = [];
-	public $elementLength = 40;
-	public $totalElements = 2000;
+
+	public static $track = [];
+	public static $sectionLength = 40;
+	public static $totalElements = 2000;
 
 	public function __construct()
 	{
-		for ($i = 0; $i < $this->totalElements; $i += $this->elementLength) {
-			$element = new Element($i);
-			$this->elements[$i] = $element;
+		$type = 0;
+		for ($pos = 0; $pos < $this->totalElements; $pos++) {
+			if ($this->isSectionChange($pos)) {
+				$type = rand(0, 1);
+			}
+			$element = new Element($type, $pos);
+			$this->track[$pos] = $element;
 		}
-		foreach ($this->elements as $element) {
-			echo "Element: " . print_r($element) . "\n";
+		foreach ($this->track as $element) {
+			echo print_r($element) . "\n";
 		}
+	}
+
+	public function isSectionChange($pos)
+	{
+		return $pos % $this->sectionLength == 0;
+	}
+
+	public function getTypeFromPosition($pos)
+	{
+		return $this->track[$pos]->type;
 	}
 }

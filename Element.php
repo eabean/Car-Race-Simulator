@@ -2,24 +2,12 @@
 
 class Element
 {
-	/**
-	 * @var string type of the element. 'straight' or 'curve'
-	 */
-	public $type = '';
-	/**
-	 * @var int length of the element
-	 */
-	public $length = 40;
-	/**
-	 * @var array positions of the track for this element
-	 */
-	public $positions = [];
-	// public $startPos = 0;
-	// public $endPos = 0;
+	public $type; // 0 is 'straight', 1 is 'curve'
+	public $position;
 
-	public function __construct(int $startPos)
+	public function __construct(int $type, int $position)
 	{
-		$this->type = rand(0, 1) ? 'straight' : 'curve';
-		$this->positions = range($startPos, $startPos + $this->length - 1);
+		$this->type = $type;
+		$this->position = $position;
 	}
 }

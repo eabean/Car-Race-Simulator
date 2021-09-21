@@ -2,24 +2,28 @@
 
 class Car
 {
-	/**
-	 * @var int type of the element. 'straight' or 'curve'
-	 */
-	public $straightSpeed = 0;
-	/**
-	 * @var int type of the element. 'straight' or 'curve'
-	 */
-	public $curveSpeed = 0;
-	public $totalSpeed = 22;
-	public $minSpeed = 4;
 
-
+	public static $totalSpeed = 22;
+	public static $minSpeed = 4;
+	public $straightSpeed;
+	public $curveSpeed;
+	public $position = 0;
 
 	public function __construct()
 	{
 		$this->straightSpeed = rand($this->minSpeed, $this->totalSpeed - $this->minSpeed);
 		$this->curveSpeed = $this->totalSpeed - $this->straightSpeed;
-		echo $this->straightSpeed . "\n";
-		echo $this->curveSpeed . "\n";
+	}
+
+	public function progressPosition($currentElement)
+	{
+		$track = new Track();
+		$onCurve = $currentElement->type;
+		$speed = $onCurve ? $this->curveSpeed : $this->straightSpeed;
+		$nextPosition = $speed + $this->position;
+		if ($track->isSectionChange($nextPosition) && $track->getTypeFromPosition($nextPosition) !== $onCurve) {
+			$nextPosition = $nextPosition - ($nextPosition % $track->sectionLength);
+		}
+		$this->position = $nextPosition;
 	}
 }
