@@ -3,8 +3,8 @@
 class Car
 {
 
-	public static $totalSpeed = 22;
-	public static $minSpeed = 4;
+	public $totalSpeed = 22;
+	public $minSpeed = 4;
 	public $straightSpeed;
 	public $curveSpeed;
 	public $position = 0;
@@ -21,7 +21,7 @@ class Car
 		$onCurve = $currentElement->type;
 		$speed = $onCurve ? $this->curveSpeed : $this->straightSpeed;
 		$nextPosition = $speed + $this->position;
-		if ($track->isSectionChange($nextPosition) && $track->getTypeFromPosition($nextPosition) !== $onCurve) {
+		if ($track->isSectionChange($nextPosition) && $track->isCurveOrStraight($nextPosition) !== $onCurve) {
 			$nextPosition = $nextPosition - ($nextPosition % $track->sectionLength);
 		}
 		$this->position = $nextPosition;

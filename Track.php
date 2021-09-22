@@ -2,9 +2,9 @@
 class Track
 {
 
-	public static $track = [];
-	public static $sectionLength = 40;
-	public static $totalElements = 2000;
+	public $track = [];
+	public $elementMultiples = 40;
+	public $totalElements = 2000;
 
 	public function __construct()
 	{
@@ -13,21 +13,18 @@ class Track
 			if ($this->isSectionChange($pos)) {
 				$type = rand(0, 1);
 			}
-			$element = new Element($type, $pos);
-			$this->track[$pos] = $element;
+			$this->track[$pos] = $type;
 		}
-		foreach ($this->track as $element) {
-			echo print_r($element) . "\n";
-		}
+		print_r($this->track);
 	}
 
 	public function isSectionChange($pos)
 	{
-		return $pos % $this->sectionLength == 0;
+		return $pos % $this->elementMultiples == 0;
 	}
 
-	public function getTypeFromPosition($pos)
+	public function isCurveOrStraight($pos)
 	{
-		return $this->track[$pos]->type;
+		return $this->track[$pos];
 	}
 }

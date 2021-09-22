@@ -2,12 +2,13 @@
 
 class Element
 {
-	public $type; // 0 is 'straight', 1 is 'curve'
-	public $position;
+	// 0 is 'straight', 1 is 'curve'
+	public $type;
+	public $pos;
 
-	public function __construct(int $type, int $position)
+	public function __construct(int $type, int $pos)
 	{
 		$this->type = $type;
-		$this->position = $position;
+		$this->pos = $pos;
 	}
 }
