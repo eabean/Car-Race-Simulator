@@ -20,6 +20,11 @@ class RoundResult
 
 	public function runRound($cars, $track)
 	{
+		foreach ($cars as $car) {
+			$car->drive($track);
+		}
+		$this->carsPosition = $this->getCarPositions($cars);
+		$this->step++;
 	}
 
 	public function getCarPositions($cars)
@@ -29,12 +34,11 @@ class RoundResult
 			$car = $cars[$i];
 			$carsPosition[$car->name] = $car->position;
 		}
-		print_r($carsPosition);
 		return $carsPosition;
 	}
 
-	public function endRace()
+	public function endRace($track)
 	{
-		return in_array("1999", $this->carsPosition);
+		return in_array($track->totalElements - 1, $this->carsPosition);
 	}
 }

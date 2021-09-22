@@ -17,27 +17,16 @@ class RaceResult
 			$carName = "car" . $i;
 			array_push($this->cars, new Car($carName));
 		}
-		// $carsPosition = $this->getCarPositions();
 		$roundResult = new RoundResult(0, $this->cars);
 		$track = new Track();
-		print_r($roundResult);
-
-		// while (!$roundResult->endRace()) {
-		// 	array_push($this->roundResults, $roundResult);
-		// 	$roundResult->runRound($this->cars, $track);
-		// }
+		while (!$roundResult->endRace($track)) {
+			array_push($this->roundResults, $roundResult);
+			echo "<pre>";
+			print_r($roundResult);
+			echo "</pre>";
+			$roundResult->runRound($this->cars, $track);
+		}
 	}
-
-	// public function getCarPositions()
-	// {
-	// 	$carsPosition = [];
-	// 	for ($i = 0; $i < $this->numOfCars; $i++) {
-	// 		$car = $this->cars[$i];
-	// 		$carsPosition[$car->name] = $car->position;
-	// 	}
-	// 	print_r($carsPosition);
-	// 	return $carsPosition;
-	// }
 
 	public function getRoundResults(): array
 	{

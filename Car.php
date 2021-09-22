@@ -3,7 +3,7 @@
 class Car
 {
 
-	public $name = '';
+	public $name;
 	public $totalSpeed = 22;
 	public $minSpeed = 4;
 	public $straightSpeed;
@@ -17,15 +17,30 @@ class Car
 		$this->curveSpeed = $this->totalSpeed - $this->straightSpeed;
 	}
 
-	public function progressPosition($currentElement)
+	public function drive($track)
 	{
-		$track = new Track();
-		$onCurve = $currentElement->type;
-		$speed = $onCurve ? $this->curveSpeed : $this->straightSpeed;
-		$nextPosition = $speed + $this->position;
-		if ($track->isSectionChange($nextPosition) && $track->isCurveOrStraight($nextPosition) !== $onCurve) {
-			$nextPosition = $nextPosition - ($nextPosition % $track->sectionLength);
+		$maxPos = $track->totalElements - 1;
+		$currentElement = $track->isCurveOrStraight($this->position);
+		$nextPos = $currentElement ? $this->driveCurve() : $this->driveStraight();
+		if ($this->willChangeElementType($track, $nextPos, $currentElement)) {
+			$nextPos = $nextPos - ($nextPos % $track->elementMultiples);
 		}
-		$this->position = $nextPosition;
+		$this->position = ($nextPos >= $maxPos) ? $maxPos : $nextPos;
+	}
+
+	public function driveStraight()
+	{
+		return $this->position + $this->straightSpeed;
+	}
+
+	public function driveCurve()
+	{
+		return $this->position + $this->curveSpeed;
+	}
+
+	public function willChangeElementType($track, $nextPos, $currentElement)
+	{
+		return $track->isSectionChange($nextPos) &&
+			$track->isCurveOrStraight($nextPos) !== $currentElement;
 	}
 }
