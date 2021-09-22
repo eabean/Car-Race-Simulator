@@ -15,7 +15,7 @@ class Track
 			}
 			$this->track[$pos] = $type;
 		}
-		print_r($this->track);
+		// print_r($this->track);
 	}
 
 	public function isSectionChange($pos)

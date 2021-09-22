@@ -8,25 +8,36 @@ class RaceResult
 	 * @var array of roundResults
 	 */
 	private $roundResults = [];
+	public $cars = [];
+	public $numOfCars = 5;
 
 	public function startRace()
 	{
-		$car1 = new Car();
-		$car2 = new Car();
-		$car3 = new Car();
-		$car4 = new Car();
-		$car5 = new Car();
-		$carsPosition = array(
-			'car1' => $car1->position,
-			'car2' => $car2->position,
-			'car3' => $car3->position,
-			'car4' => $car4->position,
-			'car5' => $car5->position,
-		);
+		for ($i = 1; $i <= $this->numOfCars; $i++) {
+			$carName = "car" . $i;
+			array_push($this->cars, new Car($carName));
+		}
+		// $carsPosition = $this->getCarPositions();
+		$roundResult = new RoundResult(0, $this->cars);
 		$track = new Track();
-		$roundResult = new RoundResult(0, $carsPosition);
-		print_r($carsPosition);
+		print_r($roundResult);
+
+		// while (!$roundResult->endRace()) {
+		// 	array_push($this->roundResults, $roundResult);
+		// 	$roundResult->runRound($this->cars, $track);
+		// }
 	}
+
+	// public function getCarPositions()
+	// {
+	// 	$carsPosition = [];
+	// 	for ($i = 0; $i < $this->numOfCars; $i++) {
+	// 		$car = $this->cars[$i];
+	// 		$carsPosition[$car->name] = $car->position;
+	// 	}
+	// 	print_r($carsPosition);
+	// 	return $carsPosition;
+	// }
 
 	public function getRoundResults(): array
 	{

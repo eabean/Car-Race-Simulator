@@ -3,14 +3,16 @@
 class Car
 {
 
+	public $name = '';
 	public $totalSpeed = 22;
 	public $minSpeed = 4;
 	public $straightSpeed;
 	public $curveSpeed;
 	public $position = 0;
 
-	public function __construct()
+	public function __construct($name)
 	{
+		$this->name = $name;
 		$this->straightSpeed = rand($this->minSpeed, $this->totalSpeed - $this->minSpeed);
 		$this->curveSpeed = $this->totalSpeed - $this->straightSpeed;
 	}
