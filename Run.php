@@ -1,5 +1,4 @@
 <?php
-
 include('Race.php');
 ini_set('display_errors', 1);
 

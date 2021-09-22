@@ -3,12 +3,12 @@
 class RoundResult
 {
 	/**
-	 * @var int
+	 * @var int round number
 	 */
 	public $step;
 
 	/**
-	 * @var array
+	 * @var array array of car positions
 	 */
 	public $carsPosition;
 
@@ -18,7 +18,7 @@ class RoundResult
 		$this->setCarPositions($cars);
 	}
 
-	public function runRound($cars, $track)
+	public function runRound($cars, $track): RoundResult
 	{
 		foreach ($cars as $car) {
 			$car->drive($track);
@@ -28,7 +28,7 @@ class RoundResult
 		return new RoundResult($this->step, $cars);
 	}
 
-	public function setCarPositions($cars)
+	public function setCarPositions($cars): void
 	{
 		$carsPosition = [];
 		for ($i = 0; $i < count($cars); $i++) {
@@ -38,7 +38,7 @@ class RoundResult
 		$this->carsPosition =  $carsPosition;
 	}
 
-	public function endRace($track)
+	public function endRace($track): bool
 	{
 		$maxPos = $track->totalElements - 1;
 		return in_array($maxPos, $this->carsPosition);

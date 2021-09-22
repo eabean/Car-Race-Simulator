@@ -8,10 +8,16 @@ class RaceResult
 	 * @var array of roundResults
 	 */
 	private $roundResults = [];
+	/**
+	 * @var array of Cars
+	 */
 	public $cars = [];
+	/**
+	 * @var int number of cars in the race
+	 */
 	public $numOfCars = 5;
 
-	public function startRace()
+	public function startRace(): void
 	{
 		for ($i = 1; $i <= $this->numOfCars; $i++) {
 			$carName = "car" . $i;

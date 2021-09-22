@@ -2,8 +2,17 @@
 class Track
 {
 
+	/**
+	 * @var array list of track elements. '0' is straight, '1' is curve
+	 */
 	public $track = [];
+	/**
+	 * @var int minimum length of series of elements
+	 */
 	public $elementMultiples = 40;
+	/**
+	 * @var int total number of elements of the track
+	 */
 	public $totalElements = 2000;
 
 	public function __construct()
@@ -17,12 +26,12 @@ class Track
 		}
 	}
 
-	public function isSectionChange($pos)
+	public function isSectionChange($pos): bool
 	{
 		return $pos % $this->elementMultiples == 0;
 	}
 
-	public function isCurveOrStraight($pos)
+	public function isCurveOrStraight($pos): bool
 	{
 		return $this->track[$pos];
 	}
