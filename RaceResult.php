@@ -19,12 +19,9 @@ class RaceResult
 		}
 		$roundResult = new RoundResult(0, $this->cars);
 		$track = new Track();
-		while (!$roundResult->endRace($track)) {
+		while ($roundResult->endRace($track) == false) {
 			array_push($this->roundResults, $roundResult);
-			echo "<pre>";
-			print_r($roundResult);
-			echo "</pre>";
-			$roundResult->runRound($this->cars, $track);
+			$roundResult = $roundResult->runRound($this->cars, $track);
 		}
 	}
 

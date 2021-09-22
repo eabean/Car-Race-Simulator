@@ -15,7 +15,7 @@ class RoundResult
 	public function __construct(int $step, array $cars)
 	{
 		$this->step = $step;
-		$this->carsPosition = $this->getCarPositions($cars);
+		$this->setCarPositions($cars);
 	}
 
 	public function runRound($cars, $track)
@@ -23,22 +23,24 @@ class RoundResult
 		foreach ($cars as $car) {
 			$car->drive($track);
 		}
-		$this->carsPosition = $this->getCarPositions($cars);
+		$this->setCarPositions($cars);
 		$this->step++;
+		return new RoundResult($this->step, $cars);
 	}
 
-	public function getCarPositions($cars)
+	public function setCarPositions($cars)
 	{
 		$carsPosition = [];
 		for ($i = 0; $i < count($cars); $i++) {
 			$car = $cars[$i];
 			$carsPosition[$car->name] = $car->position;
 		}
-		return $carsPosition;
+		$this->carsPosition =  $carsPosition;
 	}
 
 	public function endRace($track)
 	{
-		return in_array($track->totalElements - 1, $this->carsPosition);
+		$maxPos = $track->totalElements - 1;
+		return in_array($maxPos, $this->carsPosition);
 	}
 }
