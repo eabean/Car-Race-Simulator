@@ -3,7 +3,7 @@ class Track
 {
 
 	/**
-	 * @var array list of track elements. '0' is straight, '1' is curve
+	 * @var array of track elements. '0' is straight, '1' is curve
 	 */
 	public $track = [];
 	/**
@@ -15,7 +15,7 @@ class Track
 	 */
 	public $totalElements = 2000;
 	/**
-	 * @var int position of the last element on the track
+	 * @var int index of the last element on the track
 	 */
 	public $lastPos;
 
@@ -30,7 +30,6 @@ class Track
 			$this->track[$pos] = $type;
 		}
 		$this->lastPos = $this->totalElements - 1;
-		print_r($this->track);
 	}
 
 	public function isSectionChange($pos): bool

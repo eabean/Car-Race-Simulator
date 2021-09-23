@@ -8,7 +8,7 @@ class RoundResult
 	public $step;
 
 	/**
-	 * @var array array of car positions
+	 * @var array of car positions
 	 */
 	public $carsPosition;
 
