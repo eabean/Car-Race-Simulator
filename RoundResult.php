@@ -35,7 +35,7 @@ class RoundResult
 			$car = $cars[$i];
 			$carsPosition[$car->name] = $car->position;
 		}
-		$this->carsPosition =  $carsPosition;
+		$this->carsPosition = $carsPosition;
 	}
 
 	public function endRace($track): bool

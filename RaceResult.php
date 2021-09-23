@@ -23,8 +23,10 @@ class RaceResult
 			$carName = "car" . $i;
 			array_push($this->cars, new Car($carName));
 		}
-		$roundResult = new RoundResult(0, $this->cars);
 		$track = new Track();
+		$startResult = new RoundResult(0, $this->cars);
+		array_push($this->roundResults, $startResult);
+		$roundResult = new RoundResult(0, $this->cars);
 		while ($roundResult->endRace($track) == false) {
 			array_push($this->roundResults, $roundResult);
 			$roundResult = $roundResult->runRound($this->cars, $track);

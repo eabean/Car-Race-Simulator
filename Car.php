@@ -23,7 +23,7 @@ class Car
 	 */
 	public $curveSpeed;
 	/**
-	 * @var int car's position on the track (which element)
+	 * @var int car's position on the track (element index)
 	 */
 	public $position = 0;
 
@@ -36,13 +36,15 @@ class Car
 
 	public function drive($track): void
 	{
+		if ($this->position > 1999) print_r($this);
 		$maxPos = $track->totalElements - 1;
 		$currentElement = $track->isCurveOrStraight($this->position);
 		$nextPos = $currentElement ? $this->driveCurve() : $this->driveStraight();
+		$nextPos = ($nextPos >= $maxPos) ? $maxPos : $nextPos;
 		if ($this->willChangeElementType($track, $nextPos, $currentElement)) {
 			$nextPos = $nextPos - ($nextPos % $track->elementMultiples);
 		}
-		$this->position = ($nextPos >= $maxPos) ? $maxPos : $nextPos;
+		$this->position = $nextPos;
 	}
 
 	public function driveStraight(): int
