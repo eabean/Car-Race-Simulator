@@ -30,6 +30,7 @@ class Track
 			$this->track[$pos] = $type;
 		}
 		$this->lastPos = $this->totalElements - 1;
+		print_r($this->track);
 	}
 
 	public function isSectionChange($pos): bool

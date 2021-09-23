@@ -58,7 +58,6 @@ class Car
 
 	public function willChangeElementType($track, $nextPos, $currentElement): bool
 	{
-		return $track->isSectionChange($nextPos) &&
-			$track->isCurveOrStraight($nextPos) !== $currentElement;
+		return $track->isCurveOrStraight($nextPos) !== $currentElement;
 	}
 }
