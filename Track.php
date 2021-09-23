@@ -14,6 +14,11 @@ class Track
 	 * @var int total number of elements of the track
 	 */
 	public $totalElements = 2000;
+	/**
+	 * @var int position of the last element on the track
+	 */
+	public $lastPos;
+
 
 	public function __construct()
 	{
@@ -24,6 +29,7 @@ class Track
 			}
 			$this->track[$pos] = $type;
 		}
+		$this->lastPos = $this->totalElements - 1;
 	}
 
 	public function isSectionChange($pos): bool

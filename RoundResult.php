@@ -40,7 +40,7 @@ class RoundResult
 
 	public function endRace($track): bool
 	{
-		$maxPos = $track->totalElements - 1;
+		$maxPos = $track->lastPos;
 		return in_array($maxPos, $this->carsPosition);
 	}
 }

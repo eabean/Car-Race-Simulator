@@ -36,8 +36,7 @@ class Car
 
 	public function drive($track): void
 	{
-		if ($this->position > 1999) print_r($this);
-		$maxPos = $track->totalElements - 1;
+		$maxPos = $track->lastPos;
 		$currentElement = $track->isCurveOrStraight($this->position);
 		$nextPos = $currentElement ? $this->driveCurve() : $this->driveStraight();
 		$nextPos = ($nextPos >= $maxPos) ? $maxPos : $nextPos;
