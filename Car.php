@@ -36,14 +36,14 @@ class Car
 
 	public function drive($track): void
 	{
-		$maxPos = $track->lastPos;
+		$maxEl = $track->lastEl;
 		$currentElement = $track->isCurveOrStraight($this->position);
-		$nextPos = $currentElement ? $this->driveCurve() : $this->driveStraight();
-		$nextPos = ($nextPos >= $maxPos) ? $maxPos : $nextPos;
-		if ($this->willChangeElementType($track, $nextPos, $currentElement)) {
-			$nextPos = $nextPos - ($nextPos % $track->elementMultiples);
+		$nextEl = $currentElement ? $this->driveCurve() : $this->driveStraight();
+		$nextEl = ($nextEl >= $maxEl) ? $maxEl : $nextEl;
+		if ($this->willChangeElementType($track, $nextEl, $currentElement)) {
+			$nextEl = $nextEl - ($nextEl % $track->elementMultiples);
 		}
-		$this->position = $nextPos;
+		$this->position = $nextEl;
 	}
 
 	public function driveStraight(): int
@@ -56,8 +56,8 @@ class Car
 		return $this->position + $this->curveSpeed;
 	}
 
-	public function willChangeElementType($track, $nextPos, $currentElement): bool
+	public function willChangeElementType($track, $nextEl, $currentElement): bool
 	{
-		return $track->isCurveOrStraight($nextPos) !== $currentElement;
+		return $track->isCurveOrStraight($nextEl) !== $currentElement;
 	}
 }
