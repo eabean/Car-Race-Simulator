@@ -29,6 +29,7 @@ class RaceResult
 			array_push($this->roundResults, $roundResult);
 			$roundResult = $roundResult->runRound($this->cars, $track);
 		}
+		array_push($this->roundResults, $roundResult);
 	}
 
 	public function getRoundResults(): array
