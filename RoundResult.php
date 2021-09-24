@@ -23,9 +23,7 @@ class RoundResult
 		foreach ($cars as $car) {
 			$car->drive($track);
 		}
-		$this->setCarPositions($cars);
-		$this->step++;
-		return new RoundResult($this->step, $cars);
+		return new RoundResult($this->step + 1, $cars);
 	}
 
 	public function setCarPositions($cars): void

@@ -24,8 +24,6 @@ class RaceResult
 			array_push($this->cars, new Car($carName));
 		}
 		$track = new Track();
-		$startResult = new RoundResult(0, $this->cars);
-		array_push($this->roundResults, $startResult);
 		$roundResult = new RoundResult(0, $this->cars);
 		while ($roundResult->endRace($track) == false) {
 			array_push($this->roundResults, $roundResult);
